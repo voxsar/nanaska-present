@@ -77,11 +77,13 @@ class PresentationResource extends Resource
                 Tables\Columns\TextColumn::make('title')
                     ->searchable()
                     ->limit(50),
-                Tables\Columns\BadgeColumn::make('status')
-                    ->colors([
-                        'warning' => 'pending',
-                        'success' => 'evaluated',
-                    ]),
+                Tables\Columns\TextColumn::make('status')
+                    ->badge()
+                    ->color(fn (string $state): string => match ($state) {
+                        'pending' => 'warning',
+                        'evaluated' => 'success',
+                        default => 'gray',
+                    }),
                 Tables\Columns\IconColumn::make('file_path')
                     ->label('File')
                     ->boolean()

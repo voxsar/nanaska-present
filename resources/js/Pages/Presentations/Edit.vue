@@ -137,7 +137,6 @@ const stopAudioRecording = () => {
 const submit = () => {
     form.post(route('presentations.update', props.presentation.id), {
         forceFormData: true,
-        method: 'put',
         _method: 'put',
     });
 };
